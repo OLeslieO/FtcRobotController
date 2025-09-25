@@ -10,6 +10,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
+
 public class Vision {
     private final Limelight3A camera; //limelight相机
     private final Servo gimbalServo;  // 云台舵机
@@ -17,6 +18,7 @@ public class Vision {
     private double servoPos = 0.5;    // 舵机初始位置（0~1）
 
     Telemetry telemetry;
+
 
     public Vision(@NonNull final HardwareMap hardwareMap, Telemetry telemetry) {
         camera = hardwareMap.get(Limelight3A.class, "limelight");
