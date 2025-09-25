@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-@TeleOp
+@TeleOp(name="Chasis")
 public class Chasis extends LinearOpMode {
     @Override
     public void runOpMode() {
@@ -23,7 +23,7 @@ public class Chasis extends LinearOpMode {
         while (opModeIsActive()){
             double x = gamepad1.left_stick_x;
             double y = -gamepad1.left_stick_y;
-            double rx = gamepad1.right_stick_x;
+            double rx = -gamepad1.right_stick_x;
 
             double a = Math.max(Math.abs(x)+ Math.abs(y)+ Math.abs(rx), 1);
 
