@@ -16,7 +16,7 @@ import java.util.List;
 @TeleOp(name="AprilTag", group="Concept")
 public class AprilTag extends LinearOpMode {
 
-    private static final int TARGET_TAG_ID = 22;   // 目标 AprilTag ID BLUE20/RED24
+    private static final int TARGET_TAG_ID = 20;   // 目标 AprilTag ID BLUE20/RED24
     private static final double TICKS_PER_DEGREE = 10; // 假设电机编码器每度对应10个tick（根据实际电机修改）
 
     private DcMotorEx cameraMotor;
@@ -82,11 +82,11 @@ public class AprilTag extends LinearOpMode {
             double frontRightPower = (y - x - rx) / denominator;
             double backRightPower = (y + x - rx) / denominator;
 
-            double powerCoefficent=1;
+            double powerCoefficent=0.5;
 
             frontLeftMotor.setPower(frontLeftPower*powerCoefficent);
-            backLeftMotor.setPower(backLeftPower*powerCoefficent);
-            frontRightMotor.setPower(frontRightPower*powerCoefficent);
+            backLeftMotor.setPower(backLeftPower * powerCoefficent);
+            frontRightMotor.setPower(frontRightPower * powerCoefficent);
             backRightMotor.setPower(backRightPower*powerCoefficent);
 
             if (targetTag != null && targetTag.robotPose != null) {
@@ -112,7 +112,7 @@ public class AprilTag extends LinearOpMode {
 
             telemetry.update();
 
-            sleep(20);
+            sleep(10);
         }
 
         // 结束后关闭摄像头
