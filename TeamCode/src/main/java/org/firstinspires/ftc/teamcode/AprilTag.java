@@ -5,6 +5,10 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.hardware.limelightvision.LLResult;
+import com.qualcomm.hardware.limelightvision.LLResultTypes;
+import com.qualcomm.hardware.limelightvision.LLStatus;
+import com.qualcomm.hardware.limelightvision.Limelight3A;
 
 import org.firstinspires.ftc.vision.VisionPortal;
 import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
@@ -14,10 +18,12 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import java.util.List;
 
 @TeleOp(name="AprilTag", group="Concept")
+
 public class AprilTag extends LinearOpMode {
 
+
     private static final int TARGET_TAG_ID = 20;   // 目标 AprilTag ID BLUE20/RED24
-    private static final double TICKS_PER_DEGREE = 10; // 假设电机编码器每度对应10个tick（根据实际电机修改）
+
 
     private DcMotorEx cameraMotor;
     private AprilTagProcessor aprilTag;
@@ -26,24 +32,28 @@ public class AprilTag extends LinearOpMode {
 
     @Override
     public void runOpMode() throws InterruptedException {
+        DcMotorEx frontLeftMotor = hardwareMap.get(DcMotorEx.class,"leftFrontMotor");
+        DcMotorEx backLeftMotor = hardwareMap.get(DcMotorEx.class,"leftBackMotor");
+        DcMotorEx frontRightMotor = hardwareMap.get(DcMotorEx.class,"rightFrontMotor");
+        DcMotorEx backRightMotor = hardwareMap.get(DcMotorEx.class,"rightBackMotor");
         cameraMotor = hardwareMap.get(DcMotorEx.class, "cameraMotor");
         cameraMotor.setDirection(DcMotorSimple.Direction.FORWARD);
         cameraMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         cameraMotor.setTargetPosition(0);
         cameraMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         cameraMotor.setPower(1);
-        // Make sure your ID's match your configuration
-        DcMotorEx frontLeftMotor = hardwareMap.get(DcMotorEx.class,"leftFrontMotor");
-        DcMotorEx backLeftMotor = hardwareMap.get(DcMotorEx.class,"leftBackMotor");
-        DcMotorEx frontRightMotor = hardwareMap.get(DcMotorEx.class,"rightFrontMotor");
-        DcMotorEx backRightMotor = hardwareMap.get(DcMotorEx.class,"rightBackMotor");
 
-        // Reverse the right side motors. This may be wrong for your setup.
-        // If your robot moves backwards when commanded to go forwards,
-        // reverse the left side instead.
-        // See the note about this earlier on this page.[]\
         frontLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         backLeftMotor.setDirection(DcMotorSimple.Direction.REVERSE);
+
+        //double CPR = 100 ;
+        int position = cameraMotor.getCurrentPosition();
+
+        Limelight3A limelight = hardwareMap.get(Limelight3A.class, "limelight");
+        limelight.setPollRateHz(100); // 这设置了我们向Limelight请求数据的频率（每秒100次）
+        limelight.start(); // 这告诉Limelight开始观察！
+
+
 
 
         // 初始化 AprilTag 处理器
@@ -58,6 +68,7 @@ public class AprilTag extends LinearOpMode {
         waitForStart();
 
         while (opModeIsActive()) {
+
 
             List<AprilTagDetection> detections = aprilTag.getDetections();
             AprilTagDetection targetTag = null;
