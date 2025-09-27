@@ -8,6 +8,8 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.hardware.limelightvision.LLResult;
 import com.qualcomm.hardware.limelightvision.LLResultTypes;
 import com.qualcomm.hardware.limelightvision.LLStatus;
+
+
 import com.qualcomm.hardware.limelightvision.Limelight3A;
 
 import org.firstinspires.ftc.vision.VisionPortal;
@@ -49,7 +51,7 @@ public class AprilTag extends LinearOpMode {
         //double CPR = 100 ;
         int position = cameraMotor.getCurrentPosition();
 
-        Limelight3A limelight = hardwareMap.get(Limelight3A.class, "limelight");
+        Limelight3A limelight = hardwareMap.get(Limelight3A.class, "camera1");
         limelight.setPollRateHz(100); // 这设置了我们向Limelight请求数据的频率（每秒100次）
         limelight.start(); // 这告诉Limelight开始观察！
 
@@ -68,6 +70,7 @@ public class AprilTag extends LinearOpMode {
         waitForStart();
 
         while (opModeIsActive()) {
+
 
 
             List<AprilTagDetection> detections = aprilTag.getDetections();
