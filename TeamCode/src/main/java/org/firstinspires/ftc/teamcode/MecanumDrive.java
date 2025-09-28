@@ -12,6 +12,8 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.Pose2D;
 
+
+//这是数学方法计算的云台和底盘移动结合
 @TeleOp(name="nancy")
 public class MecanumDrive extends LinearOpMode {
     //    private Limelight3A cameraFront;

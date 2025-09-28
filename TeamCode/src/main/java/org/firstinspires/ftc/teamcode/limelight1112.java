@@ -1,5 +1,5 @@
 package org.firstinspires.ftc.teamcode;
-
+//在cyz发的limelight111版本的基础上加了lasttx，用来判断丢失时云台转的方向
 import com.qualcomm.hardware.limelightvision.LLResult;
 import com.qualcomm.hardware.limelightvision.Limelight3A;
 import com.qualcomm.hardware.limelightvision.LLResultTypes;
@@ -11,7 +11,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import java.util.LinkedList;
 import java.util.Queue;
 
-@TeleOp(name = "Limelighttest(cyzversion2))")
+@TeleOp(name = "Limelighttest1112")
 public class limelight1112 extends LinearOpMode {
 
     private Limelight3A limelight;
