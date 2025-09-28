@@ -101,9 +101,9 @@ public class limelighttest333 extends LinearOpMode {
             }
 
             telemetry.update();
-            double y = -gamepad1.left_stick_y; // Remember, Y stick value is reversed
-            double x = gamepad1.left_stick_x * 1.1; // Counteract imperfect strafing
-            double rx = gamepad1.right_stick_x;
+            double y = -gamepad1.left_stick_y / 2.0; // Remember, Y stick value is reversed
+            double x = gamepad1.left_stick_x * 1.1 / 2.0; // Counteract imperfect strafing
+            double rx = gamepad1.right_stick_x / 3.0;
 
             // Denominator is the largest motor power (absolute value) or 1
             // This ensures all the powers maintain the same ratio,
@@ -114,7 +114,7 @@ public class limelighttest333 extends LinearOpMode {
             double frontRightPower = (y - x - rx) / denominator;
             double backRightPower = (y + x - rx) / denominator;
 
-            double powerCoefficent=1;
+            double powerCoefficent= 1;
 
             frontLeftMotor.setPower(frontLeftPower*powerCoefficent);
             backLeftMotor.setPower(backLeftPower*powerCoefficent);
