@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 //在cyz发的limelight111版本的基础上加了lasttx，用来判断丢失时云台转的方向
 import com.qualcomm.hardware.limelightvision.LLResult;
 import com.qualcomm.hardware.limelightvision.Limelight3A;
+import com.qualcomm.hardware.limelightvision.LLResultTypes;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
@@ -10,8 +11,8 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import java.util.LinkedList;
 import java.util.Queue;
 
-@TeleOp(name = "AotoDrive111")
-public class AotoDrive extends LinearOpMode {
+@TeleOp(name = "Limelighttest1112")
+public class limelight1112 extends LinearOpMode {
 
     private Limelight3A limelight;
 
@@ -44,7 +45,10 @@ public class AotoDrive extends LinearOpMode {
         DcMotorEx frontRightMotor = hardwareMap.get(DcMotorEx.class,"rightFrontMotor");
         DcMotorEx backRightMotor = hardwareMap.get(DcMotorEx.class,"rightBackMotor");
 
-
+        // Reverse the right side motors. This may be wrong for your setup.
+        // If your robot moves backwards when commanded to go forwards,
+        // reverse the left side instead.
+        // See the note about this earlier on this page.[]\
         frontRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
         backRightMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
