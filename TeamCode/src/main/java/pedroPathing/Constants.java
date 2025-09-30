@@ -30,20 +30,18 @@ public class Constants {
             .rightFrontMotorName("rightFrontMotor")
             .rightRearMotorName("rightBackMotor")
             .leftRearMotorName("leftBackMotor")
-            .leftFrontMotorName("leftFrontMotor")
-            .rightFrontMotorDirection(DcMotorSimple.Direction.REVERSE)
-            .rightRearMotorDirection(DcMotorSimple.Direction.REVERSE);
+            .leftFrontMotorName("leftFrontMotor");
+            //.rightFrontMotorDirection(DcMotorSimple.Direction.REVERSE)
+            //.rightRearMotorDirection(DcMotorSimple.Direction.REVERSE);
 
     //不确定odo是不是这个"goBILDA Pinpoint Odometry Computer"
     public static PinpointConstants localizerConstants = new PinpointConstants()
-            .forwardPodY(-5) //这个要改，应该就是之前测过的odo的offsetx和offsety，单位是inch
-            .strafePodX(0.5)
+            .forwardPodY(3.5433070866142) //这个要改，应该就是之前测过的odo的offsetx和offsety，单位是inch
+            .strafePodX(3.9370078740157)
             .distanceUnit(DistanceUnit.INCH)
             .hardwareMapName("odo")
             .encoderResolution(GoBildaPinpointDriver.GoBildaOdometryPods.goBILDA_4_BAR_POD)
             .forwardEncoderDirection(GoBildaPinpointDriver.EncoderDirection.FORWARD)
             .strafeEncoderDirection(GoBildaPinpointDriver.EncoderDirection.FORWARD);
-
-
 
 }
